@@ -1,5 +1,6 @@
 package chess;
 
+import application.UI;
 import boardgame.Board;
 import boardgame.Piece;
 import boardgame.Position;
@@ -41,7 +42,10 @@ public class ChessMatch {
 
     private void validateSourcePosition(Position position){
         if (!board.thereIsAPiece(position)){
-            throw new ChessException("Não existe peça na posição de origem!");
+            throw new ChessException("Não existe peça na posição de ORIGEM.");
+        }
+        if (!board.piece(position).isThereAnyPossibleMovie()){
+            throw new ChessException("Não existem movimentos possíveis para a peça escolhida.");
         }
     }
 
