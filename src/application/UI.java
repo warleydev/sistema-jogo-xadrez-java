@@ -54,8 +54,11 @@ public class UI {
         System.out.println();
         printCaputerdPieces(captured);
         System.out.println();
-        System.out.println("Turn: "+chessMatch.getTurn());
-        System.out.println("Waiting player: "+chessMatch.getCurrentPlayer());
+        System.out.println("Turno: "+chessMatch.getTurn());
+        System.out.println("Vez do jogador: "+chessMatch.getCurrentPlayer());
+        if (chessMatch.getCheck()){
+            System.out.println("CHEQUE!");
+        }
     }
 
     public static void printBoard(ChessPiece[][] pieces){
@@ -88,7 +91,7 @@ public class UI {
             System.out.print("-" + ANSI_RESET);
         }
         else {
-            if (piece.getColor() == Color.WHITE) {
+            if (piece.getColor() == Color.BRANCO) {
                 System.out.print(ANSI_WHITE + piece + ANSI_RESET);
             }
             else {
@@ -99,14 +102,14 @@ public class UI {
     }
 
     private static void printCaputerdPieces(List<ChessPiece> captured){
-        List<ChessPiece> white = captured.stream().filter(x -> x.getColor() == Color.WHITE).collect(Collectors.toList());
-        List<ChessPiece> black = captured.stream().filter(x -> x.getColor() == Color.BLACK).collect(Collectors.toList());
-        System.out.println("Captured pieces: ");
-        System.out.print("White: ");
+        List<ChessPiece> white = captured.stream().filter(x -> x.getColor() == Color.BRANCO).collect(Collectors.toList());
+        List<ChessPiece> black = captured.stream().filter(x -> x.getColor() == Color.PRETO).collect(Collectors.toList());
+        System.out.println("Peças capturadas: ");
+        System.out.print("Branco: ");
         System.out.print(ANSI_WHITE);
         System.out.println(Arrays.toString(white.toArray()));
         System.out.print(ANSI_RESET);
-        System.out.print("Black: ");
+        System.out.print("Preto: ");
         System.out.print(ANSI_PURPLE);
         System.out.println(Arrays.toString(black.toArray()));
         System.out.print(ANSI_RESET);
