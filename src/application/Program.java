@@ -7,6 +7,7 @@ import chess.ChessMatch;
 import chess.ChessPiece;
 import chess.ChessPosition;
 
+import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
@@ -40,8 +41,12 @@ public class Program {
                 }
 
                 if (chessMatch.getPromoted() != null){
-                    System.out.print("Digite a peça a ser promovida [D/C/T/B]: ");
-                    String type = sc.nextLine();
+                    System.out.print("Digite a peça para promoção [B/C/D/T]: ");
+                    String type = sc.nextLine().toUpperCase();
+                    while (!type.equals("B") && !type.equals("C") && !type.equals("T") && !type.equals("D")){
+                        System.out.print("Peça inválida! Digite novamente a peça para promoção [B/C/D/T]: ");
+                        type = sc.nextLine().toUpperCase();
+                    }
                     chessMatch.replacePromotedPiece(type);
                 }
             }
